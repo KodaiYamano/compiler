@@ -1,0 +1,46 @@
+#!/bin/bash
+
+unchangeable_files=(
+  "^src/main/java/enshud/Main\.java$"
+  "^src/main/java/enshud/casl/CaslSimulator\.java$"
+  "^src/test/java/enshud/s0/trial/TrialTest\.java$"
+  "^src/test/java/enshud/s1/lexer/LexerTest\.java$"
+  "^src/test/java/enshud/s2/parser/ParserTest\.java$"
+  "^src/test/java/enshud/s3/checker/CheckerTest\.java$"
+  "^src/test/java/enshud/s4/compiler/CompilerTest\.java$"
+  "^build\.gradle$"
+  "^settings\.gradle$"
+  "^data/ts/.*$"
+  "^data/pas/.*$"
+  "^data/ans/.*$"
+  "^data/cas/.*$"
+)
+
+containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$1" =~ $e ]] && return 0; done
+  return 1
+}
+
+for FILE in `git diff --cached --name-status $against -- | cut -c3-`; do
+  if containsElement $FILE "${unchangeable_files[@]}"; then
+    echo -e "        \e[31mNG: $FILE\e[m"
+    CHANGE_DETECTED=1
+  else
+    : #echo -e "        \e[32mOK: $FILE\e[m"
+  fi
+done
+
+if [ "$CHANGE_DETECTED" ]; then
+  echo "-------------------------------------------"
+  echo "ERROR: 演習Dでの編集禁止ファイルが変更されています．"
+  echo "\"git checkout\" コマンドで当該ファイルの変更をリセットして下さい．"
+  echo
+  echo "  例: ファイルをリセット"
+  echo "  \$ git checkout HEAD data/pas/normal01.pas"
+  echo
+  echo "  例: ディレクトリ以下全てをリセット"
+  echo "  \$ git checkout HEAD data/"
+  echo
+  exit 1
+fi

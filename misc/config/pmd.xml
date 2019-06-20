@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+
+<ruleset name="Custom Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        Custom ruleset for Ave
+    </description>
+
+    <!-- For numeric metrics -->
+    <!-- LOC -->
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="1" />
+        </properties>
+    </rule>
+
+    <!-- Cyclomatic Number -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="methodReportLevel" value="1" />
+            <property name="classReportLevel" value="9999" />
+        </properties>
+    </rule>
+
+    <!-- Naming -->
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions" />
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions" />
+    <rule ref="category/java/codestyle.xml/VariableNamingConventions" />
+
+    <!-- Law of Demeter -->
+    <rule ref="category/java/design.xml/LawOfDemeter" />
+
+    <!-- For binary metrics -->
+    <!-- Switch -->
+    <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitchStmt" />
+    <rule ref="category/java/bestpractices.xml/SwitchStmtsShouldHaveDefault" />
+    <rule ref="category/java/design.xml/SwitchDensity" />
+    <rule ref="category/java/errorprone.xml/MissingBreakInSwitch" />
+    <rule ref="category/java/performance.xml/TooFewBranchesForASwitchStatement" />
+
+    <!-- Unused / Useless / Unnecessary -->
+    <rule ref="category/java/bestpractices.xml/UnusedFormalParameter" />
+    <rule ref="category/java/bestpractices.xml/UnusedImports" />
+    <rule ref="category/java/bestpractices.xml/UnusedLocalVariable" />
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField" />
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+    <rule ref="category/java/codestyle.xml/UselessParentheses" />
+
+    <!-- Empty -->
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyFinallyBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyIfStmt" />
+    <rule ref="category/java/errorprone.xml/EmptyStatementBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop" />
+    <rule ref="category/java/errorprone.xml/EmptySwitchStatements" />
+    <rule ref="category/java/errorprone.xml/EmptyTryBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyWhileStmt" />
+
+    <!-- Simplify -->
+    <rule ref="category/java/bestpractices.xml/ForLoopCanBeForeach" />
+    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
+    <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
+    <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
+    <rule ref="category/java/errorprone.xml/UnconditionalIfStatement" />
+
+    <!-- Final -->
+    <rule ref="category/java/codestyle.xml/LocalVariableCouldBeFinal" />
+    <rule ref="category/java/codestyle.xml/MethodArgumentCouldBeFinal" />
+    <rule ref="category/java/design.xml/FinalFieldCouldBeStatic" />
+    <rule ref="category/java/design.xml/ImmutableField" />
+
+    <!-- Declaration -->
+    <rule ref="category/java/bestpractices.xml/MissingOverride" />
+    <rule ref="category/java/codestyle.xml/FieldDeclarationsShouldBeAtStartOfClass" />
+    <rule ref="category/java/design.xml/SingularField" />
+    <rule ref="category/java/performance.xml/StringInstantiation" />
+
+    <!-- Null / Equals -->
+    <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals" />
+    <rule ref="category/java/errorprone.xml/EqualsNull" />
+    <rule ref="category/java/errorprone.xml/MisplacedNullCheck" />
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings" />
+
+</ruleset>
